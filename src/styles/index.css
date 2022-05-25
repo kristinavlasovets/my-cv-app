@@ -1,0 +1,36 @@
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 88vw;
+  height: 100%;
+  margin: 0 auto;
+}
+
+h1,
+h2, label {
+  margin-top: 20px;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button_section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+button {
+  width: 200px;
+  height: 50px;
+  margin: 40px;
+}
