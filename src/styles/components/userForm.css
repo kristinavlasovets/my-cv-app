@@ -1,0 +1,76 @@
+.user_form_wrapper {
+  width: 100%;
+  margin-top: 5%;
+  background: #FFF7EC;
+  font-family: "Shippori Antique", sans-serif;
+  color: #191716;
+  border: 1px solid #FFF7EC;
+  border-radius: 8%;
+}
+
+.user_form_header {
+  text-align: center;
+  padding: 50px 30px 40px 30px;
+}
+
+.user_form_header h1 {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.form_block {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+input:focus, textarea:focus  {
+    outline: none;
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.input_wrapper label {
+  color: #6d6d6d;
+  font-size: 12px;
+
+  margin-top: 10px;
+}
+
+input::placeholder, textarea::placeholder{
+  color: #191716;
+  font-size: 18px;
+  text-transform: lowercase;
+  font-family:"Shippori Antique", sans-serif;
+}
+
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder  {
+    opacity: 0; transition: opacity 0.3s ease;
+}
+
+.input_wrapper input, textarea {
+  border: none;
+  background-color: #FFF7EC;
+  color: #000000;
+  font-size: 26px;
+  border-bottom: 2px solid #191716;
+  margin-bottom: 10px;
+}
+.input_wrapper textarea {
+    resize: none;
+    color: #302e2d;
+}
+
+.user_form_footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.user_form_footer button {
+  margin: 20px;
+}

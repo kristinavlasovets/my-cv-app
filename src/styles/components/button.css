@@ -1,0 +1,34 @@
+.button_cancel {
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 140px;
+  height: 43px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "Shippori Antique", sans-serif;
+  line-height: 17px;
+  border: 2px solid #302E2D;
+  background: #FFF7EC;
+  color: #302E2D;
+  cursor: pointer;
+}
+
+.button_send {
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 140px;
+  height: 43px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: "Shippori Antique", sans-serif;
+  line-height: 17px;
+  border: 1px solid #32312F;
+  background: #32312F;
+  box-shadow: 0px 5px 10px rgba(147, 140, 134, 1);
+  color:  #FFF7EC;
+  cursor: pointer;
+}
