@@ -7,7 +7,7 @@ export default class UserForm extends React.Component {
       <div className="container">
         <div className="user_form_wrapper">
           <div className="user_form_header">
-            <h1>Send us your CV</h1>
+            <h2>Send us your CV</h2>
             <p>
               Our specialists are searching for talented professionals. Send
               your CV today and we will contact you with the latest job
@@ -17,88 +17,71 @@ export default class UserForm extends React.Component {
 
           <div className="form_block">
             <form>
-              <div className="input_wrapper">
-                <label htmlFor="user_name">Name</label>
-                <input
-                  id="user_name"
-                  type="text"
-                  value={this.props.userName}
-                  placeholder="Name"
-                />
-              </div>
+              <label htmlFor="user_name">Name*</label>
+              <input
+                id="user_name"
+                type="text"
+                placeholder="Name"
+                required
+              />
 
-              <div className="input_wrapper">
-                <label htmlFor="user_lastname">Last Name</label>
-                <input
-                  id="user_lastname"
-                  type="text"
-                  value={this.props.userLastName}
-                  placeholder="Last Name"
-                />
-              </div>
+              <label htmlFor="user_lastname">Last Name*</label>
+              <input
+                id="user_lastname"
+                type="text"
+                placeholder="Last Name"
+                required
+              />
 
-              <div className="input_wrapper"></div>
+              <label htmlFor="user_birth_date">Date of Birth*</label>
+              <input
+                id="user_birthdate"
+                type="date"
+                placeholder="DD.MM.YYYY"
+                required
+              />
 
-              <div className="input_wrapper">
-                <label htmlFor="user_birth_date">Date of Birth</label>
-                <input
-                  id="user_birthdate"
-                  type="text"
-                  value={this.props.userBirthdate}
-                  placeholder="DD.MM.YYYY"
-                />
-              </div>
-              <div className="input_wrapper">
-                <label htmlFor="user_phone">Phone</label>
-                <input
-                  id="user_phone"
-                  type="text"
-                  value={this.props.userPhone}
-                  placeholder="Phone"
-                />
-              </div>
-              <div className="input_wrapper">
-                <label htmlFor="user_website">Website</label>
-                <input
-                  id="user_website"
-                  type="text"
-                  value={this.props.userWebsite}
-                  placeholder="Website"
-                />
-              </div>
-              <div className="input_wrapper">
-                <label htmlFor="user_about">Tell us about yourself</label>
-                <textarea
-                  autoFocus
-                  maxLength="140"
-                  id="user_about"
-                  type="text"
-                  value={this.props.userAbout}
-                  placeholder="Tell us about yourself"
-                />
-              </div>
-              <div className="input_wrapper">
-                <label htmlFor="user_techstack">Technology stack</label>
-                <textarea
-                  autoFocus
-                  maxLength="140"
-                  id="user_techstack"
-                  type="text"
-                  value={this.props.userTechstack}
-                  placeholder="Technology stack"
-                />
-              </div>
-              <div className="input_wrapper">
-                <label htmlFor="user_project">Recent project description</label>
-                <textarea
-                  autoFocus
-                  maxLength="140"
-                  id="user_project"
-                  type="text"
-                  value={this.props.userName}
-                  placeholder="Recent project description"
-                />
-              </div>
+              <label htmlFor="user_phone">Phone*</label>
+              <input
+                id="user_phone"
+                type="tel"
+                placeholder="Phone"
+                required
+              />
+
+              <label htmlFor="user_website">Website</label>
+              <input
+                id="user_website"
+                type="url"
+                placeholder="Website"
+              />
+
+              <label htmlFor="user_about">Tell us about yourself</label>
+              <textarea
+              rows='7'
+                autoFocus
+                maxLength="140"
+                id="user_about"
+                placeholder="Tell us about yourself"
+              />
+
+              <label htmlFor="user_techstack">Technology stack</label>
+              <textarea
+              rows='7'
+                autoFocus
+                maxLength="140"
+                id="user_techstack"
+                placeholder="Technology stack"
+              />
+
+              <label htmlFor="user_project">Recent project description</label>
+              <textarea
+              rows='7'
+                autoFocus
+                maxLength="140"
+                id="user_project"
+                placeholder="Recent project description"
+              />
             </form>
           </div>
 
