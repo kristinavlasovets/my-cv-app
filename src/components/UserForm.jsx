@@ -1,12 +1,13 @@
 import React from "react";
 import Button from "./Button";
+import UserFormCSS from "../styles/components/userForm.module.css";
 
 export default class UserForm extends React.Component {
   render() {
     return (
       <div className="container">
-        <div className="user_form_wrapper">
-          <div className="user_form_header">
+        <div className={UserFormCSS.user_form_wrapper}>
+          <div className={UserFormCSS.user_form_header}>
             <h2>Send us your CV</h2>
             <p>
               Our specialists are searching for talented professionals. Send
@@ -15,11 +16,11 @@ export default class UserForm extends React.Component {
             </p>
           </div>
 
-          <div className="form_block">
+          <div className={UserFormCSS.form_block}>
             <form>
-              <label htmlFor="user_name">Name*</label>
+              <label htmlFor={UserFormCSS.user_name}>Name*</label>
               <input
-                id="user_name"
+                id={UserFormCSS.user_name}
                 type="text"
                 placeholder="Name"
                 required
@@ -27,7 +28,7 @@ export default class UserForm extends React.Component {
 
               <label htmlFor="user_lastname">Last Name*</label>
               <input
-                id="user_lastname"
+                id={UserFormCSS.user_lastname}
                 type="text"
                 placeholder="Last Name"
                 required
@@ -35,7 +36,7 @@ export default class UserForm extends React.Component {
 
               <label htmlFor="user_birth_date">Date of Birth*</label>
               <input
-                id="user_birthdate"
+                id={UserFormCSS.user_birthdate}
                 type="date"
                 placeholder="DD.MM.YYYY"
                 required
@@ -43,7 +44,7 @@ export default class UserForm extends React.Component {
 
               <label htmlFor="user_phone">Phone*</label>
               <input
-                id="user_phone"
+                id={UserFormCSS.user_phone}
                 type="tel"
                 placeholder="Phone"
                 required
@@ -51,41 +52,41 @@ export default class UserForm extends React.Component {
 
               <label htmlFor="user_website">Website</label>
               <input
-                id="user_website"
+                id={UserFormCSS.user_website}
                 type="url"
                 placeholder="Website"
               />
 
               <label htmlFor="user_about">Tell us about yourself</label>
               <textarea
-              rows='7'
+                rows="7"
                 autoFocus
                 maxLength="140"
-                id="user_about"
+                id={UserFormCSS.user_about}
                 placeholder="Tell us about yourself"
               />
 
               <label htmlFor="user_techstack">Technology stack</label>
               <textarea
-              rows='7'
+                rows="7"
                 autoFocus
                 maxLength="140"
-                id="user_techstack"
+                id={UserFormCSS.user_techstack}
                 placeholder="Technology stack"
               />
 
               <label htmlFor="user_project">Recent project description</label>
               <textarea
-              rows='7'
+                rows="7"
                 autoFocus
                 maxLength="140"
-                id="user_project"
+                id={UserFormCSS.user_project}
                 placeholder="Recent project description"
               />
             </form>
           </div>
 
-          <div className="user_form_footer">
+          <div className={UserFormCSS.user_form_footer}>
             <Button btnClass="button_cancel" btnText="Cancel" />
             <Button btnClass="button_send" btnText="Send" />
           </div>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap');
 
-@import './components/button';
-@import './components/userForm';
+@import './components/button.module.css';
+@import './components/userForm.module.css';
 
 *,
 :after,
