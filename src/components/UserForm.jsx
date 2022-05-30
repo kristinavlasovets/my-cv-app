@@ -63,15 +63,35 @@ export default class UserForm extends React.Component {
 
     switch (name) {
       case "username":
+        // error.username =
+        // value.length < 1 ? "The field is empty. Please fill in." : "";
         error.username =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
+          value.charAt(0) === value.charAt(0).toUpperCase
+            ? "The first character must be uppercase."
+            : "";
         break;
       case "lastname":
         error.lastname =
           value.length < 1 ? "The field is empty. Please fill in." : "";
         break;
+      case "phone":
+        error.phone =
+          value.length < 1 ? "The field is empty. Please fill in." : "";
+        break;
       case "website":
         error.website =
+          value.length < 1 ? "The field is empty. Please fill in." : "";
+        break;
+      case "about":
+        error.about =
+          value.length < 1 ? "The field is empty. Please fill in." : "";
+        break;
+      case "techstack":
+        error.techstack =
+          value.length < 1 ? "The field is empty. Please fill in." : "";
+        break;
+      case "project":
+        error.project =
           value.length < 1 ? "The field is empty. Please fill in." : "";
         break;
       default:
@@ -82,6 +102,7 @@ export default class UserForm extends React.Component {
       [name]: value,
     });
   };
+
 
   render() {
     const { error } = this.state;
@@ -110,6 +131,8 @@ export default class UserForm extends React.Component {
                 onChange={this.handleUserInput}
               />
 
+              <span>{error.username}</span>
+
               <label htmlFor="user_lastname">Last Name*</label>
               <input
                 name="lastname"
@@ -120,6 +143,7 @@ export default class UserForm extends React.Component {
                 required
                 onChange={this.handleUserInput}
               />
+              <span>{error.lastname}</span>
 
               <label htmlFor="user_birth_date">Date of Birth*</label>
               <input
@@ -139,10 +163,11 @@ export default class UserForm extends React.Component {
                 type="tel"
                 value={this.state.phone}
                 placeholder="Phone"
-                pattern="[0-9]{1}-[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                required
+                // pattern="[0-9]{1}-[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                // required
                 onChange={this.handleUserInput}
               />
+              <span>{error.phone}</span>
 
               <label htmlFor="user_website">Website*</label>
               <input
@@ -154,6 +179,7 @@ export default class UserForm extends React.Component {
                 required
                 onChange={this.handleUserInput}
               />
+              <span>{error.website}</span>
 
               <label htmlFor="user_about">Tell us about yourself*</label>
               <textarea
@@ -167,6 +193,7 @@ export default class UserForm extends React.Component {
                 required
                 onChange={this.handleUserInput}
               />
+              <span>{error.about}</span>
 
               <label htmlFor="user_techstack">Technology stack*</label>
               <textarea
@@ -180,6 +207,7 @@ export default class UserForm extends React.Component {
                 required
                 onChange={this.handleUserInput}
               />
+              <span>{error.techstack}</span>
 
               <label htmlFor="user_project">Recent project description*</label>
               <textarea
@@ -193,12 +221,21 @@ export default class UserForm extends React.Component {
                 required
                 onChange={this.handleUserInput}
               />
-            </form>
-          </div>
+              <span>{error.project}</span>
 
-          <div className={UserFormCSS.user_form_footer}>
-            <Button btnType="reset" btnClass="button_cancel" btnText="Cancel" />
-            <Button btnType="submit" btnClass="button_send" btnText="Save" />
+              <div className={UserFormCSS.user_form_footer}>
+                <Button
+                  btnType="reset"
+                  btnClass="button_cancel"
+                  btnText="Cancel"
+                />
+                <Button
+                  btnType="submit"
+                  btnClass="button_send"
+                  btnText="Save"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
