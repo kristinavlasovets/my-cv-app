@@ -1,111 +1,135 @@
-import React from "react";
-import Button from "./Button";
-import UserFormCSS from "../styles/components/userForm.module.css";
-
-const formValid = ({ error, ...rest }) => {
-  let isValid = false;
-  Object.values(error).forEach((val) => {
-    if (val.length > 0) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-  });
-  Object.values(rest).forEach((val) => {
-    if (val === null) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-  });
-  return isValid;
-};
+import React from 'react';
+import Button from './Button';
+import UserFormCSS from '../styles/components/userForm.module.css';
+import {
+  checkEmpty,
+  checkCapitalLetter,
+  checkSpaces,
+  checkUrl,
+} from '../helpers/helperFunctions';
 
 export default class UserForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      lastname: "",
-      birthdate: "",
-      phone: "",
-      website: "",
-      about: "",
-      techstack: "",
-      project: "",
+      username: '',
+      lastname: '',
+      birthdate: '',
+      phone: '',
+      website: '',
+      about: '',
+      techstack: '',
+      project: '',
       error: {
-        username: "",
-        lastname: "",
-        birthdate: "",
-        phone: "",
-        website: "",
-        about: "",
-        techstack: "",
-        project: "",
+        username: '',
+        lastname: '',
+        phone: '',
+        website: '',
+        about: '',
+        techstack: '',
+        project: '',
       },
+      usernameValid: false,
+      lastnameValid: false,
+      phoneValid: false,
+      websiteValid: false,
+      aboutValid: false,
+      techstackValid: false,
+      projectValid: false,
     };
   }
 
-  onFormSubmit = (e) => {
-    e.preventDefault();
-    if (formValid(this.state)) {
-      console.log(this.state);
-    } else {
-      console.log("Form is invalid!");
-    }
-  };
-
   handleUserInput = (e) => {
     e.preventDefault();
-    let error = { ...this.state.error };
-    const { name, value } = e.target;
+    let error = {...this.state.error};
+    const {name, value} = e.target;
 
-    switch (name) {
-      case "username":
-        // error.username =
-        // value.length < 1 ? "The field is empty. Please fill in." : "";
-        error.username =
-          value.charAt(0) === value.charAt(0).toUpperCase
-            ? "The first character must be uppercase."
-            : "";
-        break;
-      case "lastname":
-        error.lastname =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      case "phone":
-        error.phone =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      case "website":
-        error.website =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      case "about":
-        error.about =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      case "techstack":
-        error.techstack =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      case "project":
-        error.project =
-          value.length < 1 ? "The field is empty. Please fill in." : "";
-        break;
-      default:
-        break;
+    const isEmpty = checkEmpty(value);
+    if (isEmpty) {
+      this.setState({
+        error: {
+          [name]: isEmpty,
+        },
+      });
+    } else {
+      this.setState({
+        error: '',
+      });
     }
+
+    if (name === 'username' || name === 'lastname') {
+      const isCapital = checkCapitalLetter(value);
+      if (isCapital) {
+        this.setState({
+          error: {
+            [name]: isCapital,
+          },
+        });
+      }
+    }
+
+    const isSpace = checkSpaces(value);
+    if (isSpace) {
+      this.setState({
+        error: {
+          [name]: isSpace,
+        },
+      });
+    }
+
+    if (name === 'website') {
+      const isUrl = checkUrl(value);
+      if (isUrl) {
+        this.setState({
+          error: {
+            [name]: isUrl,
+          },
+        });
+      } else {
+        this.setState({
+          error: '',
+        });
+      }
+    }
+
+    if (name === 'phone') {
+      if (value.length === 1) {
+        this.setState({
+          phone: value + '-',
+        });
+      }
+    }
+
     this.setState({
-      error,
       [name]: value,
     });
   };
 
+  resetForm = () => {
+    this.setState({
+      username: '',
+      lastname: '',
+      birthdate: '',
+      phone: '',
+      website: '',
+      about: '',
+      techstack: '',
+      project: '',
+      error: {
+        username: '',
+        lastname: '',
+        phone: '',
+        website: '',
+        about: '',
+        techstack: '',
+        project: '',
+      },
+    });
+  };
 
   render() {
-    const { error } = this.state;
+    const {error} = this.state;
     return (
       <div className="container">
         <div className={UserFormCSS.user_form_wrapper}>
@@ -119,7 +143,7 @@ export default class UserForm extends React.Component {
           </div>
 
           <div className={UserFormCSS.form_block}>
-            <form onSubmit={this.onFormSubmit}>
+            <form>
               <label htmlFor={UserFormCSS.user_name}>Name*</label>
               <input
                 name="username"
@@ -162,9 +186,9 @@ export default class UserForm extends React.Component {
                 id={UserFormCSS.user_phone}
                 type="tel"
                 value={this.state.phone}
-                placeholder="Phone"
-                // pattern="[0-9]{1}-[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                // required
+                placeholder="7-____-__-__"
+                maxLength={12}
+                required
                 onChange={this.handleUserInput}
               />
               <span>{error.phone}</span>
@@ -194,6 +218,7 @@ export default class UserForm extends React.Component {
                 onChange={this.handleUserInput}
               />
               <span>{error.about}</span>
+              <span>{`${600 - this.state.about.length} / 600`}</span>
 
               <label htmlFor="user_techstack">Technology stack*</label>
               <textarea
@@ -208,6 +233,7 @@ export default class UserForm extends React.Component {
                 onChange={this.handleUserInput}
               />
               <span>{error.techstack}</span>
+              <span>{`${600 - this.state.techstack.length} / 600`}</span>
 
               <label htmlFor="user_project">Recent project description*</label>
               <textarea
@@ -222,10 +248,11 @@ export default class UserForm extends React.Component {
                 onChange={this.handleUserInput}
               />
               <span>{error.project}</span>
+              <span>{`${600 - this.state.project.length} / 600`}</span>
 
               <div className={UserFormCSS.user_form_footer}>
                 <Button
-                  btnType="reset"
+                  onClick={this.resetForm}
                   btnClass="button_cancel"
                   btnText="Cancel"
                 />

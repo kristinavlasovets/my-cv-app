@@ -1,5 +1,5 @@
-import React from "react";
-import ButtonCSS from "../styles/components/button.module.css";
+import React from 'react';
+import ButtonCSS from '../styles/components/button.module.css';
 
 export default class Button extends React.Component {
   constructor(props) {
@@ -8,7 +8,11 @@ export default class Button extends React.Component {
   render() {
     return (
       <div>
-        <button type={this.props.btnType} className={`button ${this.props.btnClass}`}>
+        <button
+          onClick={this.props.onClick}
+          type={this.props.btnType}
+          className={`button ${this.props.btnClass}`}
+        >
           {this.props.btnText}
         </button>
       </div>
