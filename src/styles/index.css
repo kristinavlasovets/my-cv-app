@@ -2,6 +2,7 @@
 
 @import './components/button.module.css';
 @import './components/userForm.module.css';
+@import './components/cvOutput.module.css';
 
 *,
 :after,

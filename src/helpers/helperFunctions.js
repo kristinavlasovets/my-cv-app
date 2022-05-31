@@ -22,3 +22,9 @@ export const checkUrl = (value) => {
     }
 }
 
+export const checkLimit = (value) => {
+    if (value.length >= 600) {
+        return "Field character limit exceeded."
+    }
+}
+

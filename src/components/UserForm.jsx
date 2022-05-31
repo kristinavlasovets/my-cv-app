@@ -6,6 +6,7 @@ import {
   checkCapitalLetter,
   checkSpaces,
   checkUrl,
+  checkLimit,
 } from '../helpers/helperFunctions';
 
 export default class UserForm extends React.Component {
@@ -101,6 +102,15 @@ export default class UserForm extends React.Component {
       }
     }
 
+    const isLimit = checkLimit(value);
+    if (isLimit) {
+      this.setState({
+        error: {
+          [name]: isLimit
+        }
+      })
+    }
+
     this.setState({
       [name]: value,
     });
@@ -116,15 +126,7 @@ export default class UserForm extends React.Component {
       about: '',
       techstack: '',
       project: '',
-      error: {
-        username: '',
-        lastname: '',
-        phone: '',
-        website: '',
-        about: '',
-        techstack: '',
-        project: '',
-      },
+    
     });
   };
 
@@ -143,13 +145,13 @@ export default class UserForm extends React.Component {
           </div>
 
           <div className={UserFormCSS.form_block}>
-            <form>
+            <form id="cv_form">
               <label htmlFor={UserFormCSS.user_name}>Name*</label>
               <input
                 name="username"
                 id={UserFormCSS.user_name}
                 type="text"
-                value={this.state.name}
+                value={this.state.username}
                 placeholder="Name"
                 required
                 onChange={this.handleUserInput}
@@ -162,7 +164,7 @@ export default class UserForm extends React.Component {
                 name="lastname"
                 id={UserFormCSS.user_lastname}
                 type="text"
-                value={this.state.lastName}
+                value={this.state.lastname}
                 placeholder="Last Name"
                 required
                 onChange={this.handleUserInput}
