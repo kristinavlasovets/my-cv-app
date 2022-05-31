@@ -1,35 +1,36 @@
-import React from 'react';
-import Button from './Button';
-import UserFormCSS from '../styles/components/userForm.module.css';
+import React from "react";
+import Button from "./Button";
+import CvOutput from "./CvOutput";
+import UserFormCSS from "../styles/components/userForm.module.css";
 import {
   checkEmpty,
   checkCapitalLetter,
   checkSpaces,
   checkUrl,
   checkLimit,
-} from '../helpers/helperFunctions';
+} from "../helpers/helperFunctions";
 
 export default class UserForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      lastname: '',
-      birthdate: '',
-      phone: '',
-      website: '',
-      about: '',
-      techstack: '',
-      project: '',
+      username: "",
+      lastname: "",
+      birthdate: "",
+      phone: "",
+      website: "",
+      about: "",
+      techstack: "",
+      project: "",
       error: {
-        username: '',
-        lastname: '',
-        phone: '',
-        website: '',
-        about: '',
-        techstack: '',
-        project: '',
+        username: "",
+        lastname: "",
+        phone: "",
+        website: "",
+        about: "",
+        techstack: "",
+        project: "",
       },
       usernameValid: false,
       lastnameValid: false,
@@ -42,12 +43,12 @@ export default class UserForm extends React.Component {
   }
 
   handleUserInput = (e) => {
-    e.preventDefault();
-    let error = {...this.state.error};
-    const {name, value} = e.target;
+    const { name, value } = e.target;
+    let formIsValid = true;
 
     const isEmpty = checkEmpty(value);
     if (isEmpty) {
+      formIsValid = false;
       this.setState({
         error: {
           [name]: isEmpty,
@@ -55,11 +56,11 @@ export default class UserForm extends React.Component {
       });
     } else {
       this.setState({
-        error: '',
+        error: "",
       });
     }
 
-    if (name === 'username' || name === 'lastname') {
+    if (name === "username" || name === "lastname") {
       const isCapital = checkCapitalLetter(value);
       if (isCapital) {
         this.setState({
@@ -79,7 +80,7 @@ export default class UserForm extends React.Component {
       });
     }
 
-    if (name === 'website') {
+    if (name === "website") {
       const isUrl = checkUrl(value);
       if (isUrl) {
         this.setState({
@@ -89,15 +90,15 @@ export default class UserForm extends React.Component {
         });
       } else {
         this.setState({
-          error: '',
+          error: "",
         });
       }
     }
 
-    if (name === 'phone') {
+    if (name === "phone") {
       if (value.length === 1) {
         this.setState({
-          phone: value + '-',
+          phone: value + "-",
         });
       }
     }
@@ -106,32 +107,42 @@ export default class UserForm extends React.Component {
     if (isLimit) {
       this.setState({
         error: {
-          [name]: isLimit
-        }
-      })
+          [name]: isLimit,
+        },
+      });
     }
 
     this.setState({
       [name]: value,
     });
+    return formIsValid;
   };
 
   resetForm = () => {
     this.setState({
-      username: '',
-      lastname: '',
-      birthdate: '',
-      phone: '',
-      website: '',
-      about: '',
-      techstack: '',
-      project: '',
-    
+      username: "",
+      lastname: "",
+      birthdate: "",
+      phone: "",
+      website: "",
+      about: "",
+      techstack: "",
+      project: "",
     });
   };
 
+  submitForm = (e) => {
+    e.preventDefault();
+
+    if (this.handleUserInput()) {
+      alert("Form submitted.");
+    } else {
+      alert("Form has errors.");
+    }
+  };
+
   render() {
-    const {error} = this.state;
+    const { error } = this.state;
     return (
       <div className="container">
         <div className={UserFormCSS.user_form_wrapper}>
@@ -259,6 +270,7 @@ export default class UserForm extends React.Component {
                   btnText="Cancel"
                 />
                 <Button
+                  onClick={this.submitForm}
                   btnType="submit"
                   btnClass="button_send"
                   btnText="Save"
@@ -267,6 +279,17 @@ export default class UserForm extends React.Component {
             </form>
           </div>
         </div>
+
+        <CvOutput
+          username={this.state.username}
+          lastname={this.state.lastname}
+          birthdate={this.state.birthdate}
+          phone={this.state.phone}
+          website={this.state.website}
+          about={this.state.about}
+          techstack={this.state.techstack}
+          project={this.state.project}
+        />
       </div>
     );
   }
