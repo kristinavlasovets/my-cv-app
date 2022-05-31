@@ -1,49 +1,44 @@
-import React from "react";
-import Button from "./Button";
-import CvOutput from "./CvOutput";
-import UserFormCSS from "../styles/components/userForm.module.css";
+import React from 'react';
+import Button from './Button';
+import CvOutput from './CvOutput';
+import UserFormCSS from '../styles/components/userForm.module.css';
 import {
   checkEmpty,
   checkCapitalLetter,
   checkSpaces,
   checkUrl,
   checkLimit,
-} from "../helpers/helperFunctions";
+} from '../helpers/helperFunctions';
 
 export default class UserForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "",
-      lastname: "",
-      birthdate: "",
-      phone: "",
-      website: "",
-      about: "",
-      techstack: "",
-      project: "",
+      username: '',
+      lastname: '',
+      birthdate: '',
+      phone: '',
+      website: '',
+      about: '',
+      techstack: '',
+      project: '',
       error: {
-        username: "",
-        lastname: "",
-        phone: "",
-        website: "",
-        about: "",
-        techstack: "",
-        project: "",
+        username: '',
+        lastname: '',
+        phone: '',
+        website: '',
+        about: '',
+        techstack: '',
+        project: '',
       },
-      usernameValid: false,
-      lastnameValid: false,
-      phoneValid: false,
-      websiteValid: false,
-      aboutValid: false,
-      techstackValid: false,
-      projectValid: false,
+      isValidForm: false,
+      isVisibleForm: true,
     };
   }
 
   handleUserInput = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     let formIsValid = true;
 
     const isEmpty = checkEmpty(value);
@@ -56,11 +51,11 @@ export default class UserForm extends React.Component {
       });
     } else {
       this.setState({
-        error: "",
+        error: '',
       });
     }
 
-    if (name === "username" || name === "lastname") {
+    if (name === 'username' || name === 'lastname') {
       const isCapital = checkCapitalLetter(value);
       if (isCapital) {
         this.setState({
@@ -80,7 +75,7 @@ export default class UserForm extends React.Component {
       });
     }
 
-    if (name === "website") {
+    if (name === 'website') {
       const isUrl = checkUrl(value);
       if (isUrl) {
         this.setState({
@@ -90,15 +85,15 @@ export default class UserForm extends React.Component {
         });
       } else {
         this.setState({
-          error: "",
+          error: '',
         });
       }
     }
 
-    if (name === "phone") {
+    if (name === 'phone') {
       if (value.length === 1) {
         this.setState({
-          phone: value + "-",
+          phone: value + '-',
         });
       }
     }
@@ -120,30 +115,31 @@ export default class UserForm extends React.Component {
 
   resetForm = () => {
     this.setState({
-      username: "",
-      lastname: "",
-      birthdate: "",
-      phone: "",
-      website: "",
-      about: "",
-      techstack: "",
-      project: "",
+      username: '',
+      lastname: '',
+      birthdate: '',
+      phone: '',
+      website: '',
+      about: '',
+      techstack: '',
+      project: '',
     });
   };
 
-  submitForm = (e) => {
-    e.preventDefault();
-
-    if (this.handleUserInput()) {
-      alert("Form submitted.");
+  submitForm = () => {
+    if (!this.state.error) {
+      console.log('valid');
+      this.setState({isVisibleForm: false});
+      this.setState({isValidForm: true});
     } else {
-      alert("Form has errors.");
+      console.log('not valid');
+      this.setState({isValidForm: false});
     }
   };
 
   render() {
-    const { error } = this.state;
-    return (
+    const {error} = this.state;
+    return this.state.isVisibleForm ? (
       <div className="container">
         <div className={UserFormCSS.user_form_wrapper}>
           <div className={UserFormCSS.user_form_header}>
@@ -279,18 +275,18 @@ export default class UserForm extends React.Component {
             </form>
           </div>
         </div>
-
-        <CvOutput
-          username={this.state.username}
-          lastname={this.state.lastname}
-          birthdate={this.state.birthdate}
-          phone={this.state.phone}
-          website={this.state.website}
-          about={this.state.about}
-          techstack={this.state.techstack}
-          project={this.state.project}
-        />
       </div>
+    ) : (
+      <CvOutput
+        username={this.state.username}
+        lastname={this.state.lastname}
+        birthdate={this.state.birthdate}
+        phone={this.state.phone}
+        website={this.state.website}
+        about={this.state.about}
+        techstack={this.state.techstack}
+        project={this.state.project}
+      />
     );
   }
 }

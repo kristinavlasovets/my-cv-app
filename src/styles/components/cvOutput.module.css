@@ -1,16 +1,15 @@
 .cv_wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  padding: 40px;
+  width: 80%;
+  margin: 5% auto 5%;
+  padding: 10%;
   background: #fff7ec;
-  font-family: "Shippori Antique", sans-serif;
+  font-family: 'Shippori Antique', sans-serif;
   color: #191716;
   border: 3px solid #191716;
 }
-.cv_wrapper h2{
+.cv_wrapper h2 {
   font-family: 'Rozha One', serif;
   font-size: 36px;
   font-weight: 400;
@@ -25,7 +24,7 @@
 .cv_frame {
   width: 300px;
   height: 30px;
-  
+
   margin: 20px auto 40px;
   text-align: center;
 
@@ -35,12 +34,12 @@
 }
 
 .cv_wrapper h3 {
-    text-transform: uppercase;
-    font-weight: 400;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .cv_wrapper p {
-    border-left: 1px solid #191716;
-    padding-left: 20px;
+  border-left: 1px solid #191716;
+  padding-left: 20px;
 }
